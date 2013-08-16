@@ -72,22 +72,25 @@
                             <td>konogram</td>
                             <td>author</td>
                             <td>article &amp; quote &amp; note</td>
-                            <td>promotion duration</td>
                         </tr>
                     </thead>
                     <tbody infinite-scroll="loadMore()">
                         <tr ng-repeat="konogram in konograms">
-                            <td>
-                                <div class="thumbnail">
-                                    <h4>{{konogram.id}}</h4>
-                                    <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
-                                    <h6>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h6>
-                                </div>
+                            <td style="width: 310px">
+                                <ul class="thumbnails">
+                                    <li class="thumbnail">
+                                        <h4>{{konogram.id}}</h4>
+                                        <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
+                                        <h6>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h6>
+                                    </li>
+                                </ul>
                             </td>
                             <td>
-                                <img ng-src="{{konogram.roles.author.picture}}" class="img-polaroid portrait"><br>
-                                <strong class="kid">{{konogram.roles.author.id}}</strong>
-                                <p class="name">{{konogram.roles.author.name}}</p>
+                                <p class="text-center">
+                                    <img ng-src="{{konogram.roles.author.picture}}" class="img-polaroid portrait"><br>
+                                    {{konogram.roles.author.id}}<br>
+                                    {{konogram.roles.author.name}}
+                                </p>
                             </td>
                             <td>
                                 <span class="label label-warning">article</span><br>
@@ -95,9 +98,10 @@
                                 <span class="label label-success">quote</span><br>
                                 {{konogram.roles.konogram.quote}}<br>
                                 <span class="label label-info">note</span><br>
-                                {{konogram.roles.konogram.note}}
+                                {{konogram.roles.konogram.note}}<br>
+                                <span class="label">promotion</span><br>
+                                {{promotionDate(konogram.roles.konogram.promotion)}}
                             </td>
-                            <td>{{konogram.roles.konogram.promotion}}</td>
                         </tr>
                     </tbody>
                 </table>
