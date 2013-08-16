@@ -34,6 +34,14 @@
         lastKonogramID = if numKonograms > 0 then $scope.konograms[numKonograms - 1].id else null
         $rootScope.$broadcast 'loadMore', lastKonogramID
 
+    $scope.isPromoting = (promotionObj) ->
+
+        if promotionObj is null
+            false
+        else
+            t = new Date().getTime() / 1000
+            promotionObj.from <= t <= promotionObj.to
+
 ExhibitionController.$inject =
     '$scope'
     '$rootScope',

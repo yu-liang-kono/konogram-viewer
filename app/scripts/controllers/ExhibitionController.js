@@ -37,6 +37,15 @@
       lastKonogramID = numKonograms > 0 ? $scope.konograms[numKonograms - 1].id : null;
       $rootScope.$broadcast('loadMore', lastKonogramID);
     };
+    $scope.isPromoting = function(promotionObj){
+      var t;
+      if (promotionObj === null) {
+        return false;
+      } else {
+        t = new Date().getTime() / 1000;
+        return promotionObj.from <= t && t <= promotionObj.to;
+      }
+    };
   };
   ExhibitionController.$inject = ['$scope', '$rootScope', '$filter'];
 }).call(this);
