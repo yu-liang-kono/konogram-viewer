@@ -22,7 +22,7 @@
         $scope.noMoreKonograms = false
 
     $scope.$on 'newKonograms', (e, newKonograms) !->
-        $scope.noMoreKonograms := newKonograms.length is 0
+        $scope.noMoreKonograms = newKonograms.length is 0
 
         angular.forEach newKonograms, (konogram) ->
             $scope.konograms.push konogram
@@ -35,7 +35,6 @@
         $rootScope.$broadcast 'loadMore', lastKonogramID
 
     $scope.isPromoting = (promotionObj) ->
-
         if promotionObj is null
             false
         else
