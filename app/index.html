@@ -71,7 +71,7 @@
                         <tr ng-repeat="konogram in konograms">
                             <td style="width: 310px">
                                 <ul class="thumbnails">
-                                    <li class="thumbnail">
+                                    <li class="thumbnail" ng-class="{'is-promoting': isPromoting(konogram.roles.konogram.promotion)}">
                                         <h4>{{konogram.id}}</h4>
                                         <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
                                         <h6>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h6>
