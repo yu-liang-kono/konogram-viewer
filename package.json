@@ -1,0 +1,28 @@
+{
+  "name": "konogram-viewer",
+  "version": "0.1.0",
+  "description": "A in-house tool to view the konograms.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yu-liang-kono/konogram-viewer.git"
+  },
+  "keywords": [
+    "konogram"
+  ],
+  "author": "Yu Liang",
+  "readmeFilename": "README.md",
+  "gitHead": "76d89ffecd697212d88a5cbea156dbd27afd2d4a",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-shell": "~0.3.1",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}
