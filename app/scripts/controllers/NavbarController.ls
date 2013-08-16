@@ -1,11 +1,13 @@
-NavbarController = ($scope, $rootScope) !->
+@NavbarController = NavbarController = ($scope, $rootScope) !->
 
     env = null
 
     $scope.setEnv = (e) !->
         env := e
-        $rootScope.$broadcast 'envChanged', e
+        console.log 'emit clear event'
+        $rootScope.$broadcast 'clear'
         console.log 'emit envChanged event'
+        $rootScope.$broadcast 'envChanged', e
 
     $scope.getEnv = -> env
 
@@ -15,5 +17,3 @@ NavbarController = ($scope, $rootScope) !->
 NavbarController.$inject =
     '$scope'
     '$rootScope'
-
-@NavbarController = NavbarController

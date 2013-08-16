@@ -45,19 +45,60 @@
 
             <label>Since</label>
             <div class="input-append">
-                <input class="span2" type="text" ng-model="dateSince" data-date-format="yyyy-mm-dd" bs-datepicker data-start-view="2">
+                <input class="span2" type="text" ng-model="dateSince" data-date-format="yyyy-mm-dd" bs-datepicker>
                 <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
             </div>
 
             <label>Until</label>
             <div class="input-append">
-                <input class="span2" type="text" ng-model="dateUntil" data-date-format="yyyy-mm-dd" bs-datepicker value="">
+                <input class="span2" type="text" ng-model="dateUntil" data-date-format="yyyy-mm-dd" bs-datepicker>
                 <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
             </div>
+
+            <label class="checkbox">
+                <input type="checkbox" ng-model="chronological"> Chronological
+            </label>
             <hr>
-            <button class="btn btn-primary">Search</button>
+            <button class="btn btn-primary" ng-click="clear(); queryKonograms()" ng-class="{disabled: waitingResponse}">Search</button>
         </div>
 
+        <div id="konogram-container" class="span1">
+            <table class="table" ng-controller="ExhibitionController">
+                <thead>
+                    <tr>
+                        <td>konogram id</td>
+                        <td>artwork</td>
+                        <td>author</td>
+                        <td>article</td>
+                        <td>quote &amp; note</td>
+                        <td>created at</td>
+                        <td>promotion duration</td>
+                    </tr>
+                </thead>
+                <tbody infinite-scroll="loadMore()">
+                    <tr ng-repeat="konogram in konograms">
+                        <td>{{konogram.id}}</td>
+                        <td><img ng-src="{{konogram.roles.konogram.artwork.small}}" class="img-polaroid"></td>
+                        <td>
+                            <div class="media">
+                                <img class="media-object pull-left" data-src="{{konogram.roles.author.picture}}">
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{konogram.roles.author.kid}}</h4>
+                                    {{konogram.roles.author.name}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{konogram.roles.article.title}}</td>
+                        <td>
+                            {{konogram.roles.konogram.quote}}<br>
+                            {{konogram.roles.konogram.note}}
+                        </td>
+                        <td>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td>{{konogram.roles.konogram.promotion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
@@ -65,12 +106,14 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.1.3/js/bootstrap-datepicker.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
+    <script src="scripts/lib/ng-infinite-scroll.min.js"></script>
     <script src="scripts/controllers/NavbarController.js"></script>
     <script src="scripts/controllers/SearchController.js"></script>
+    <script src="scripts/controllers/ExhibitionController.js"></script>
     <script>
-        angular.module('konogram', ['$strap.directives']);
+        angular.module('konogram', ['$strap.directives', 'infinite-scroll']);
     </script>
 </body>
 </html>
