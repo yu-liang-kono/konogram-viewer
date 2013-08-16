@@ -14,7 +14,6 @@
 
     onEnvChanged = (e, env) ->
         endpoint := API[env]
-        console.log 'receive envChanged event'
         do $scope.queryKonograms
 
     $scope.clear = ->
