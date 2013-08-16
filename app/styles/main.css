@@ -1,3 +1,7 @@
+.navbar-static-top .container, .navbar-fixed-top .container, .container { width: 1170px; }
+
 #main-container { padding-top: 80px; }
 
 #search-panel { width: 180px; }
+
+#konogram-container { width: 900px; }
