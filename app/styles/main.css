@@ -2,6 +2,15 @@
 
 #main-container { padding-top: 80px; }
 
-#search-panel { width: 180px; }
+#search-panel { width: 180px; position: fixed; top: 80px; z-index: 1030; }
+#search-panel .input-kid { width: 166px; }
+#search-panel .input-date { width: 126px; }
+#search-panel #search-btn { margin-top: 20px; width: 180px; }
 
-#konogram-container { width: 900px; }
+.konogram-artwork { width: 300px; }
+
+.table td { padding: 12px; vertical-align: middle; }
+
+.portrait { width: 100px; }
+
+.kid, .name { text-align: center; display: block; }
