@@ -6,9 +6,7 @@
     env = null;
     $scope.setEnv = function(e){
       env = e;
-      console.log('emit clear event');
       $rootScope.$broadcast('clear');
-      console.log('emit envChanged event');
       $rootScope.$broadcast('envChanged', e);
     };
     $scope.getEnv = function(){

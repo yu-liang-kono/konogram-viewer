@@ -1,7 +1,6 @@
 @ExhibitionController = ExhibitionController = ($scope, $rootScope, $filter) !->
 
-    noMoreKonograms = false
-
+    $scope.noMoreKonograms = false
     $scope.konograms = []
 
     $scope.promotionDate = (promotionObj) ->
@@ -19,19 +18,18 @@
             dateFilter(promotionObj.to * 1000, dateFormat)
 
     $scope.$on 'clear', (e) !->
-        console.log 'receive clear event'
         $scope.konograms = []
+        $scope.noMoreKonograms = false
 
     $scope.$on 'newKonograms', (e, newKonograms) !->
-        noMoreKonograms := newKonograms.length is 0
+        $scope.noMoreKonograms := newKonograms.length is 0
 
         angular.forEach newKonograms, (konogram) ->
             $scope.konograms.push konogram
 
     $scope.loadMore = !->
-        if noMoreKonograms then return
+        if $scope.noMoreKonograms then return
 
-        console.log 'loadMore'
         numKonograms = $scope.konograms.length
         lastKonogramID = if numKonograms > 0 then $scope.konograms[numKonograms - 1].id else null
         $rootScope.$broadcast 'loadMore', lastKonogramID

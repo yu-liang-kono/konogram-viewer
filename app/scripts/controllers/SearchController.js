@@ -15,7 +15,6 @@
     $scope.waitingResponse = false;
     onEnvChanged = function(e, env){
       endpoint = API[env];
-      console.log('receive envChanged event');
       return $scope.queryKonograms();
     };
     $scope.clear = function(){

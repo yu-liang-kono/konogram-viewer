@@ -2,8 +2,7 @@
 (function(){
   var ExhibitionController;
   this.ExhibitionController = ExhibitionController = function($scope, $rootScope, $filter){
-    var noMoreKonograms;
-    noMoreKonograms = false;
+    $scope.noMoreKonograms = false;
     $scope.konograms = [];
     $scope.promotionDate = function(promotionObj){
       var dateFilter, dateFormat;
@@ -20,21 +19,20 @@
       }
     };
     $scope.$on('clear', function(e){
-      console.log('receive clear event');
       $scope.konograms = [];
+      $scope.noMoreKonograms = false;
     });
     $scope.$on('newKonograms', function(e, newKonograms){
-      noMoreKonograms = newKonograms.length === 0;
+      $scope.noMoreKonograms = newKonograms.length === 0;
       angular.forEach(newKonograms, function(konogram){
         return $scope.konograms.push(konogram);
       });
     });
     $scope.loadMore = function(){
       var numKonograms, lastKonogramID;
-      if (noMoreKonograms) {
+      if ($scope.noMoreKonograms) {
         return;
       }
-      console.log('loadMore');
       numKonograms = $scope.konograms.length;
       lastKonogramID = numKonograms > 0 ? $scope.konograms[numKonograms - 1].id : null;
       $rootScope.$broadcast('loadMore', lastKonogramID);
