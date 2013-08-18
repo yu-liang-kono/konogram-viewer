@@ -28,13 +28,20 @@ module.exports = function (grunt)
                 ],
                 dest: 'app/scripts/main.js'
             }
-        }
+        },
+	sass: {
+            build: {
+	        src: 'app/styles/main.sass',
+		dest: 'app/styles/main.css'
+	    }
+	}
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('default', ['shell', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['sass', 'shell', 'concat', 'uglify', 'cssmin']);
 };
