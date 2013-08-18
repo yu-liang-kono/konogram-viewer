@@ -12,13 +12,11 @@ end
 guard 'shell' do
   # automatically compile livescript
   watch(%r{app/scripts/.+\.ls}) do |f|
-    `lsc -c #{f[0]}`
+    `grunt lsc`
   end
 
   # automatically compile sass
   watch(%r{app/styles/.+\.sass}) do |f|
-    basename = f[0][0..-6]
-    target_file = basename + '.css'
-    `sass --style=compact #{f[0]}:#{target_file}`
+    `grunt sass`
   end
 end
