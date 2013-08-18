@@ -5,18 +5,22 @@ module.exports = function (grunt)
         uglify: {
             build: {
                 src: 'app/scripts/main.js',
-                dest: 'app/scripts/main.min.js'
+                dest: 'app/scripts/main.js'
             }
         },
         cssmin: {
             build: {
                 src: 'app/styles/main.css',
-                dest: 'app/styles/main.min.css'
+                dest: 'app/styles/main.css'
             }
         },
+/*
         shell: {
             livescript: {
-                command: 'lsc -c app/scripts/controllers/*.ls'
+                options: {
+                    stdout: true
+                },
+                command: 'lsc -cp app/scripts/controllers/*.ls && date'
             }
         },
         concat: {
@@ -29,19 +33,40 @@ module.exports = function (grunt)
                 dest: 'app/scripts/main.js'
             }
         },
-	sass: {
+*/
+        sass: {
             build: {
-	        src: 'app/styles/main.sass',
-		dest: 'app/styles/main.css'
-	    }
-	}
+                src: 'app/styles/main.sass',
+                dest: 'app/styles/main.css'
+            }
+        },
+        lsc: {
+            build: {
+                src: 'app/scripts/controllers/*.ls',
+                dest: 'app/scripts/main.js'
+            }
+        },
+        watch: {
+            lsc: {
+                files: 'app/scripts/controllers/*.ls',
+                tasks: 'lsc'
+            },
+            sass: {
+                files: 'app/styles/*.sass',
+                tasks: 'sass'
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+/*
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
+*/
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-lsc');
 
-    grunt.registerTask('default', ['sass', 'shell', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['sass', 'cssmin', 'lsc', 'uglify']);
 };
