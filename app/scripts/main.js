@@ -9,12 +9,14 @@
       dateFormat = 'yyyy-MM-dd HH:mm:ss';
       if (promotionObj === null) {
         return 'N/A';
+      } else if (promotionObj.from === 0 && promotionObj.to === 2147483647) {
+        return '???? ~ ????';
       } else if (promotionObj.from === 0 && promotionObj.to !== 2147483647) {
-        return '???? - ' + dateFilter(promotionObj.to * 1000, dateFormat);
+        return '???? ~ ' + dateFilter(promotionObj.to * 1000, dateFormat);
       } else if (promotionObj.from !== 0 && promotionObj.to === 2147483647) {
-        return dateFilter(promotionObj.from * 1000, dateFormat) + ' - ????';
+        return dateFilter(promotionObj.from * 1000, dateFormat) + ' ~ ????';
       } else {
-        return dateFilter(promotionObj.from * 1000, dateFormat) + ' - ' + dateFilter(promotionObj.to * 1000, dateFormat);
+        return dateFilter(promotionObj.from * 1000, dateFormat) + ' ~ ' + dateFilter(promotionObj.to * 1000, dateFormat);
       }
     };
     $scope.$on('clear', function(e){
@@ -72,8 +74,8 @@
   this.SearchController = SearchController = function($scope, $rootScope, $http){
     var API, endpoint, onEnvChanged, beforeQuery, afterQuery, success, error;
     API = {
-      development: 'http://127.0.0.1/KonoServer/konograms',
-      production: 'http://yteam.thekono.com/KPI2/konograms'
+      development: 'http://yteam.thekono.com/KPI2/konograms',
+      production: 'http://www.thekono.com/KPI2/konograms'
     };
     endpoint = API['development'];
     $scope.kid = '';

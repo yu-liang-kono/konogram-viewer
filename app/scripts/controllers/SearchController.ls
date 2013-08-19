@@ -1,8 +1,8 @@
 @SearchController = SearchController = ($scope, $rootScope, $http) !->
 
     API =
-        development: 'http://127.0.0.1/KonoServer/konograms'
-        production: 'http://yteam.thekono.com/KPI2/konograms'
+        development: 'http://yteam.thekono.com/KPI2/konograms'
+        production: 'http://www.thekono.com/KPI2/konograms'
 
     endpoint = API['development']
 
