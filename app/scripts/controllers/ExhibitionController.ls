@@ -9,12 +9,14 @@
 
         if promotionObj is null
             'N/A'
+        else if promotionObj.from is 0 and promotionObj.to is 2147483647
+            '???? ~ ????'
         else if promotionObj.from is 0 and promotionObj.to isnt 2147483647
-            '???? - ' + dateFilter(promotionObj.to * 1000, dateFormat)
+            '???? ~ ' + dateFilter(promotionObj.to * 1000, dateFormat)
         else if promotionObj.from isnt 0 and promotionObj.to is 2147483647
-            dateFilter(promotionObj.from * 1000, dateFormat) + ' - ????'
+            dateFilter(promotionObj.from * 1000, dateFormat) + ' ~ ????'
         else
-            dateFilter(promotionObj.from * 1000, dateFormat) + ' - ' +
+            dateFilter(promotionObj.from * 1000, dateFormat) + ' ~ ' +
             dateFilter(promotionObj.to * 1000, dateFormat)
 
     $scope.$on 'clear', (e) !->
