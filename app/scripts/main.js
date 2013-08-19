@@ -22,7 +22,7 @@
       $scope.noMoreKonograms = false;
     });
     $scope.$on('newKonograms', function(e, newKonograms){
-      $scope.noMoreKonograms = newKonograms.length === 0;
+      $scope.noMoreKonograms = newKonograms.length < 10;
       angular.forEach(newKonograms, function(konogram){
         return $scope.konograms.push(konogram);
       });
