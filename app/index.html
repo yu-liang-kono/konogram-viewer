@@ -71,10 +71,11 @@
                         <tr ng-repeat="konogram in konograms">
                             <td class="artwork-column">
                                 <ul class="thumbnails">
-                                    <li class="thumbnail" ng-class="{'is-promoting': isPromoting(konogram.roles.konogram.promotion)}">
+                                    <li class="thumbnail">
                                         <h4>{{konogram.id}}</h4>
                                         <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
                                         <h6>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h6>
+                                        <img class="ribbon" ng-show="isPromoting(konogram.roles.konogram.promotion)" src="images/ribbon.png">
                                     </li>
                                 </ul>
                             </td>
@@ -87,7 +88,7 @@
                             </td>
                             <td class="metadata-column">
                                 <span class="label label-warning">article</span><br>
-                                <a ng-href="https://www.thekono.com/feeds/articles/{{konogram.roles.article.id}}">{{konogram.roles.article.title}}</a><br>
+                                <a target="_blank" ng-href="https://www.thekono.com/feeds/articles/{{konogram.roles.article.id}}">{{konogram.roles.article.title}}</a><br>
                                 <span class="label label-success">quote</span><br>
                                 {{konogram.roles.konogram.quote}}<br>
                                 <span class="label label-info">note</span><br>
