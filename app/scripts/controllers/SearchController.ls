@@ -24,7 +24,7 @@
 
         data = callback: 'JSON_CALLBACK', promotion: 1
 
-        if $scope.kid isnt '' then data.kid = $scope.kid
+        if $scope.kid isnt '' then data.owner = $scope.kid
 
         t = new Date($scope.dateSince).getTime() / 1000
         if not isNaN(t) and t > 0 then data.from = t

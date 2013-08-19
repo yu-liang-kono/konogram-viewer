@@ -99,7 +99,7 @@
         promotion: 1
       };
       if ($scope.kid !== '') {
-        data.kid = $scope.kid;
+        data.owner = $scope.kid;
       }
       t = new Date($scope.dateSince).getTime() / 1000;
       if (!isNaN(t) && t > 0) {
