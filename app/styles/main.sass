@@ -1,6 +1,9 @@
 $navbar_height: 40px
 
-.navbar-static-top .container, .navbar-fixed-top .container, .container
+/* Widen container width, default is 940px. */
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.container
     width: 1170px
 
 #main-container
@@ -10,7 +13,6 @@ $navbar_height: 40px
     width: 180px
     position: fixed
     top: $navbar_height + 40px
-
     z-index: 1030
 
     .input-kid
@@ -23,19 +25,34 @@ $navbar_height: 40px
         margin-top: 20px
         width: 180px
 
-.konogram-artwork
-    width: 300px
+#konogram-container
+    padding-bottom: 80px
 
-.table
-    td
-        padding: 12px
-        vertical-align: middle
+    /* Default is align to top. */
+    .table
+        td
+            vertical-align: middle
 
-.portrait
-    width: 100px
+    .artwork-column
+        width: 310px
 
-.thumbnails > li
-    margin: 0
+        .thumbnails
+            margin-top: 10px
+            width: 310px
 
-.thumbnail.is-promoting
-    border: 1px solid #d44413
+            .thumbnail.is-promoting
+                border: 1px solid #d44413
+
+        .konogram-artwork
+            width: 300px
+
+    .author-column
+        min-width: 110px
+
+        .portrait
+            width: 100px
+
+        .thumbnails > li
+            margin: 0
+
+

@@ -69,7 +69,7 @@
                 <table class="table">
                     <tbody infinite-scroll="loadMore()">
                         <tr ng-repeat="konogram in konograms">
-                            <td style="width: 310px">
+                            <td class="artwork-column">
                                 <ul class="thumbnails">
                                     <li class="thumbnail" ng-class="{'is-promoting': isPromoting(konogram.roles.konogram.promotion)}">
                                         <h4>{{konogram.id}}</h4>
@@ -78,14 +78,14 @@
                                     </li>
                                 </ul>
                             </td>
-                            <td>
+                            <td class="author-column">
                                 <p class="text-center">
                                     <img ng-src="{{konogram.roles.author.picture}}" class="img-polaroid portrait"><br>
                                     {{konogram.roles.author.id}}<br>
                                     {{konogram.roles.author.name}}
                                 </p>
                             </td>
-                            <td>
+                            <td class="metadata-column">
                                 <span class="label label-warning">article</span><br>
                                 <a ng-href="https://www.thekono.com/feeds/articles/{{konogram.roles.article.id}}">{{konogram.roles.article.title}}</a><br>
                                 <span class="label label-success">quote</span><br>
@@ -98,8 +98,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <p class="text-center" ng-show="!noMoreKonograms">
-                    <img src="images/loading.gif">
+                <p class="text-center">
+                    <img ng-show="!noMoreKonograms" src="images/loading.gif"><br>
+                    <span ng-show="noMoreKonograms">There are {{konograms.length}} konogram(s) in total.</span>
                 </p>
             </div>
         </div>
