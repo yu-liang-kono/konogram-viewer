@@ -1,7 +1,12 @@
 @ExhibitionController = ExhibitionController = ($scope, $rootScope, $filter) !->
 
+    KONOGRAM_SINGLE_PAGE_URL =
+        development: 'http://yteam.thekono.com/wolverine/feeds/konograms/'
+        production: 'http://www.thekono.com/feeds/konograms/'
+
     $scope.noMoreKonograms = false
     $scope.konograms = []
+    $scope.env = 'production'
 
     $scope.promotionDate = (promotionObj) ->
         dateFilter = $filter 'date'
@@ -29,6 +34,9 @@
         angular.forEach newKonograms, (konogram) ->
             $scope.konograms.push konogram
 
+    $scope.$on 'envChanged', (e, env) !->
+        $scope.env = env
+
     $scope.loadMore = !->
         if $scope.noMoreKonograms then return
 
@@ -46,6 +54,8 @@
     $scope.copyArticleId = (articleId) ->
         $rootScope.$broadcast 'articleId', articleId
 
+    $scope.getKonogramPageURL = (konogramId) ->
+        KONOGRAM_SINGLE_PAGE_URL[$scope.env] + konogramId
 
 ExhibitionController.$inject =
     '$scope'

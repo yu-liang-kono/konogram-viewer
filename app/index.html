@@ -77,7 +77,9 @@
                                 <ul class="thumbnails">
                                     <li class="thumbnail">
                                         <h4 ng-bind="konogram.id"></h4>
-                                        <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
+                                        <a target="_blank" ng-href="{{getKonogramPageURL(konogram.id)}}">
+                                            <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
+                                        </a>
                                         <h6 ng-bind="konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'"></h6>
                                         <img class="ribbon" ng-show="isPromoting(konogram.roles.konogram.promotion)" src="images/ribbon.png">
                                     </li>
