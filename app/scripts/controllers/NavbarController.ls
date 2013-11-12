@@ -10,7 +10,7 @@
     $scope.getEnv = -> env
 
     # default environment
-    $scope.setEnv 'development'
+    $scope.setEnv 'production'
 
 NavbarController.$inject =
     '$scope'

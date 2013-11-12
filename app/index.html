@@ -31,8 +31,8 @@
             <div class="container">
                 <span class="brand">Konogram</span>
                 <ul class="nav">
-                    <li ng-class="{active: (getEnv() == 'development')}"><a href="javascript:void(0)" ng-click="setEnv('development')">development</a></li>
                     <li ng-class="{active: (getEnv() == 'production')}"><a href="javascript:void(0)" ng-click="setEnv('production')">production</a></li>
+                    <li ng-class="{active: (getEnv() == 'development')}"><a href="javascript:void(0)" ng-click="setEnv('development')">development</a></li>
                 </ul>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="span3" ng-controller="SearchController">
                 <div class="well" id="search-panel">
                     <label>kid</label>
-                    <input class="input-kid" type="text" ng-model="kid" pattern="\d*" placeholder="Find someone's konogram"/>
+                    <input class="input-kid" type="text" ng-model="kid" pattern="\d*" placeholder="Find someone's konograms"/>
 
                     <label>Since</label>
                     <div class="input-append">
@@ -56,6 +56,10 @@
                         <input class="input-date" type="text" ng-model="dateUntil" data-date-format="yyyy-mm-dd" bs-datepicker>
                         <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
                     </div>
+
+                    <label>article</label>
+                    <input class="input-article" type="text" ng-model="articleId"
+                           pattern="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" placeholder="Find an article's konograms"/>
 
                     <label class="checkbox">
                         <input type="checkbox" ng-model="chronological"> Chronological
@@ -72,9 +76,9 @@
                             <td class="artwork-column">
                                 <ul class="thumbnails">
                                     <li class="thumbnail">
-                                        <h4>{{konogram.id}}</h4>
+                                        <h4 ng-bind="konogram.id"></h4>
                                         <img class="konogram-artwork" ng-src="{{konogram.roles.konogram.artwork.small}}">
-                                        <h6>{{konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h6>
+                                        <h6 ng-bind="konogram.created_time * 1000 | date:'yyyy-MM-dd HH:mm:ss'"></h6>
                                         <img class="ribbon" ng-show="isPromoting(konogram.roles.konogram.promotion)" src="images/ribbon.png">
                                     </li>
                                 </ul>
@@ -82,26 +86,31 @@
                             <td class="author-column">
                                 <p class="text-center">
                                     <img ng-src="{{konogram.roles.author.picture}}" class="img-polaroid portrait"><br>
-                                    {{konogram.roles.author.id}}<br>
-                                    {{konogram.roles.author.name}}
+                                    <span ng-bind="konogram.roles.author.id"></span><br>
+                                    <span ng-bind="konogram.roles.author.name"></span>
                                 </p>
                             </td>
                             <td class="metadata-column">
                                 <span class="label label-warning">article</span><br>
-                                <a target="_blank" ng-href="https://www.thekono.com/feeds/articles/{{konogram.roles.article.id}}">{{konogram.roles.article.title}}</a><br>
+                                <a target="_blank"
+                                   ng-href="https://www.thekono.com/feeds/articles/{{konogram.roles.article.id}}"
+                                   ng-bind="konogram.roles.article.title"></a>
+                                <a class="btn btn-mini btn-link copy-article-link" title="copy article id"
+                                   ng-click="copyArticleId(konogram.roles.article.id)"><i class="icon-search"></i>
+                                </a><br>
                                 <span class="label label-success">quote</span><br>
-                                {{konogram.roles.konogram.quote}}<br>
+                                <span ng-bind="konogram.roles.konogram.quote"></span><br>
                                 <span class="label label-info">note</span><br>
-                                {{konogram.roles.konogram.note}}<br>
+                                <span ng-bind="konogram.roles.konogram.note"></span><br>
                                 <span class="label">promotion</span><br>
-                                {{promotionDate(konogram.roles.konogram.promotion)}}
+                                <span ng-bind="promotionDate(konogram.roles.konogram.promotion)"></span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <p class="text-center">
                     <img ng-show="!noMoreKonograms" src="images/loading.gif"><br>
-                    <span ng-show="noMoreKonograms">There are {{konograms.length}} konogram(s) in total.</span>
+                    <span ng-show="noMoreKonograms">There are <span ng-bind="konograms.length"></span> konogram(s) in total.</span>
                 </p>
             </div>
         </div>
