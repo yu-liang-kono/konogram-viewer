@@ -4,16 +4,18 @@
         development: 'http://yteam.thekono.com/KPI2/konograms'
         production: 'http://www.thekono.com/KPI2/konograms'
 
-    endpoint = API['development']
+    endpoint = API['production']
 
     $scope.kid = ''
     $scope.dateSince = null
     $scope.dateUntil = null
+    $scope.articleId = ''
     $scope.chronological = false
     $scope.waitingResponse = off
 
     onEnvChanged = (e, env) ->
         endpoint := API[env]
+        $scope.articleId = ''
         do $scope.queryKonograms
 
     $scope.clear = ->
@@ -31,6 +33,8 @@
 
         t = new Date($scope.dateUntil).getTime() / 1000
         if not isNaN(t) and t > 0 then data.to = t
+
+        if $scope.articleId isnt '' then data.article_id = $scope.articleId
 
         if not $scope.chronological then data.reverse = 1
 
@@ -57,6 +61,11 @@
     $scope.$on 'envChanged', onEnvChanged
 
     $scope.$on 'loadMore', (e, konogramID) !-> $scope.queryKonograms(konogramID)
+
+    $scope.$on 'articleId', (e, articleId) !->
+        $scope.articleId = articleId
+        do $scope.clear
+        do $scope.queryKonograms
 
 SearchController.$inject =
     '$scope'

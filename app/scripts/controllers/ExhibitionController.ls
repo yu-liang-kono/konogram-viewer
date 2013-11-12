@@ -43,6 +43,10 @@
             t = new Date().getTime() / 1000
             promotionObj.from <= t <= promotionObj.to
 
+    $scope.copyArticleId = (articleId) ->
+        $rootScope.$broadcast 'articleId', articleId
+
+
 ExhibitionController.$inject =
     '$scope'
     '$rootScope',
