@@ -14,26 +14,6 @@ module.exports = function (grunt)
                 dest: 'app/styles/main.css'
             }
         },
-/*
-        shell: {
-            livescript: {
-                options: {
-                    stdout: true
-                },
-                command: 'lsc -cp app/scripts/controllers/*.ls && date'
-            }
-        },
-        concat: {
-            build: {
-                src: [
-                    'app/scripts/controllers/NavbarController.js',
-                    'app/scripts/controllers/SearchController.js',
-                    'app/scripts/controllers/ExhibitionController.js'
-                ],
-                dest: 'app/scripts/main.js'
-            }
-        },
-*/
         sass: {
             build: {
                 src: 'app/styles/main.sass',
@@ -60,10 +40,6 @@ module.exports = function (grunt)
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-/*
-    grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-*/
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-lsc');
